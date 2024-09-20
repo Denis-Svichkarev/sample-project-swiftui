@@ -1,14 +1,14 @@
 //
-//  Sample_Project_SwiftUITests.swift
-//  Sample Project SwiftUITests
+//  SampleProject_SwiftUITests.swift
+//  SampleProject-SwiftUITests
 //
-//  Created by Denis Svichkarev on 23/08/24.
+//  Created by Denis Svichkarev on 20.09.2024.
 //
 
 import XCTest
-@testable import Sample_Project_SwiftUI
+@testable import SampleProject_SwiftUI
 
-final class Sample_Project_SwiftUITests: XCTestCase {
+final class SampleProject_SwiftUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -1,13 +1,13 @@
 //
-//  Sample_Project_SwiftUIUITestsLaunchTests.swift
-//  Sample Project SwiftUIUITests
+//  SampleProject_SwiftUIUITestsLaunchTests.swift
+//  SampleProject-SwiftUIUITests
 //
-//  Created by Denis Svichkarev on 23/08/24.
+//  Created by Denis Svichkarev on 20.09.2024.
 //
 
 import XCTest
 
-final class Sample_Project_SwiftUIUITestsLaunchTests: XCTestCase {
+final class SampleProject_SwiftUIUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
