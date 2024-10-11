@@ -8,43 +8,72 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showCustomSheet = true
+    @StateObject var coordinator = AppCoordinator()
+    
+    @State private var showCustomSheet = false
 
     var body: some View {
-        ZStack {
-            VStack {
-                Text("Основной экран")
-                    .font(.largeTitle)
-                    .padding()
-                
-                Button(action: {
-                    withAnimation(.spring()) {
-                        showCustomSheet.toggle()
-                    }
-                }) {
-                    Text("Показать кастомное окно")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+        NavigationView {
+            ZStack {
+                NavigationLink(destination: SearchView(), isActive: $coordinator.navigateToSearch) {
+                    EmptyView()
                 }
-            }
-            .blur(radius: showCustomSheet ? 3 : 0)
-            .animation(.easeInOut, value: showCustomSheet)
-            
-            if showCustomSheet {
-                Color.black.opacity(0.3)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            showCustomSheet = false
+                .hidden()
+                
+                VStack {
+                    HStack {
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                showCustomSheet.toggle()
+                            }
+                        }) {
+                            Text("Login")
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(20)
+                        }
+                        
+                        Button("What can we get you?") {
+                            coordinator.navigate(to: .search)
+                        }
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                        
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                showCustomSheet.toggle()
+                            }
+                        }) {
+                            Text("Cart")
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(20)
                         }
                     }
+                    Spacer()
+                }
+                .blur(radius: showCustomSheet ? 3 : 0)
+                .animation(.easeInOut, value: showCustomSheet)
+                .padding(16)
                 
-                LoginSheetView(show: $showCustomSheet, isGestureEnabled: true)
-                    .transition(.move(edge: .bottom))
+                if showCustomSheet {
+                    Color.black.opacity(0.3)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                showCustomSheet = false
+                            }
+                        }
+                    
+                    LoginSheetView(show: $showCustomSheet, isGestureEnabled: true)
+                        .transition(.move(edge: .bottom))
+                }
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 

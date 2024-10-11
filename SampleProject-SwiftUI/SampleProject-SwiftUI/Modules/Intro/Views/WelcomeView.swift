@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @StateObject var coordinator = AppCoordinator()
+    
     @State private var showCustomSheet = true
-
+    
     var body: some View {
-        if showCustomSheet {
-            LoginSheetView(show: $showCustomSheet, isGestureEnabled: false)
+        NavigationView {
+            ZStack {
+                NavigationLink(destination: HomeView(), isActive: $coordinator.navigateToHome) {
+                    EmptyView()
+                }
+                .hidden()
+                
+                Button("SKIP") {
+                    coordinator.navigate(to: .home)
+                }
+                .padding(24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                
+                LoginSheetView(show: $showCustomSheet, isGestureEnabled: false)
+            }
         }
     }
 }

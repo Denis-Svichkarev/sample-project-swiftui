@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+enum AppRoute {
+    case home
+    case search
+}
+
+class AppCoordinator: ObservableObject {
+    @Published var navigateToHome = false
+    @Published var navigateToSearch = false
+    
+    func navigate(to route: AppRoute) {
+        switch route {
+        case .home:
+            navigateToHome = true
+        case .search:
+            navigateToSearch = true
+        }
+    }
+}
